@@ -1,0 +1,69 @@
+//Recursive approach
+
+class Solution
+{
+    public:
+        Node* insert(Node* node, int data) {
+        if(!node)
+        {
+            Node* newNode= new Node(data);
+            return newNode;
+        }
+        if(node->data>data)
+        {
+            node->left=insert(node->left,data);
+        }
+          else if(node->data <data)
+            {
+                node->right=insert(node->right,data);
+            }
+            return node;
+// Your code goes here
+    }
+
+};
+
+T.C= O( LOG N)
+S.C= O(LOG N)
+
+
+
+//non-recursive 
+
+
+
+
+class Solution
+{
+    public:
+        Node* insert(Node* node, int data) {
+            if(node == NULL) return new Node(data);
+        Node *cur = node;
+        while(true) {
+            if(cur->data < data) {
+                if(cur->right != NULL) cur = cur->right;
+                else {
+                    cur->right = new Node(data);
+                    break;
+                }
+            }
+            
+            else  if(cur->data > data)
+                {
+                    if(cur->left != NULL) cur = cur->left;
+                    else {
+                    cur->left = new Node(data);
+                    break;
+                }
+            }
+            else if(cur->data==data)return node;
+        }
+        return node;
+        
+            // Your code goes here
+    }
+
+};
+
+T.C=O(LOG N)
+S.C=O(1)
