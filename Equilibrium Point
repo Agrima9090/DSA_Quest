@@ -1,0 +1,54 @@
+//brute force
+class Solution{
+    public:
+    // Function to find equilibrium point in the array.
+    // a: input array
+    // n: size of array
+    int equilibriumPoint(long long a[], int n) {
+    for (int i = 0; i < n; i++) {
+        long long sum1 = 0; // Sum of elements before the current index
+        long long sum2 = 0; // Sum of elements after the current index
+        
+        // Calculate sum of elements before the current index
+        for (int j = 0; j < i; j++) {
+            sum1 += a[j];
+        }
+        
+        // Calculate sum of elements after the current index
+        for (int j = i + 1; j < n; j++) {
+            sum2 += a[j];
+        }
+        
+        // Check if the current index is an equilibrium point
+        if (sum1 == sum2) {
+            return i + 1; // Return 1-based index of the equilibrium point
+        }
+    }
+    
+    // If no equilibrium point is found, return -1
+    return -1;
+    }
+
+};
+tc- o(n^2)
+sc= o(1)
+
+//optimized
+int equilibriumPoint(long long a[], int n) {
+    
+    int sum=0,lefts=0;
+    for(int i=0;i<n;i++)
+    {
+        sum+=a[i];
+    }
+    for(int i=0;i<n;i++)
+    {
+        sum-=a[i];
+        if(sum==lefts)return i+1;
+        lefts+=a[i];
+    }
+    return -1;
+        // Your code here
+    }
+tc= o(n)
+sc= o(1)
