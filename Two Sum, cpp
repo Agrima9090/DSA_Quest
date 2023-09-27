@@ -1,0 +1,27 @@
+class Solution {
+public:
+    vector<int> twoSum(vector<int>& nums, int target) {
+        vector<int>v1;
+        int n=nums.size();
+        int l=0,r=n-1;
+        while(l<r)
+        {
+            int sum=nums[l]+nums[r];
+            if(sum==target)
+            {
+                v1.push_back(l);
+                v1.push_back(r);
+                break;
+            }
+            else if(sum>target)
+            {
+                r--;
+            }
+            else l++;
+        }
+        return v1;
+    }
+};
+
+tc= o(n)
+sc= o(n)
