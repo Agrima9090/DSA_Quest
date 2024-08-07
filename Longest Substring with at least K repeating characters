@@ -1,0 +1,28 @@
+class Solution {
+private:
+    int lsHelper(string s, int k, int start, int end){
+        if ((end-start)<k) return 0;
+
+        unordered_map<char, int> freq;
+        for (int i = start; i < end; i++){
+            freq[s[i]]++;
+        }
+
+        for(int i = start; i < end; i++){
+            if (freq[s[i]]<k){//splitting of the string at the point where frquency is less than k
+                int j = i+1;
+                while (j < end && freq[s[j]]<k) j++;
+                return max(lsHelper(s,k,start, i), lsHelper(s,k,j,end));//checking both the split ends
+            }
+        }
+        return end-start;
+    }
+
+public:
+    int longestSubstring(string s, int k) {
+        return lsHelper(s,k,0, s.size());
+    }
+};
+
+T.C. = O(n log n)
+S.C. = O(n)
