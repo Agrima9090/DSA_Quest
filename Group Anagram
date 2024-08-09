@@ -1,0 +1,22 @@
+class Solution {
+public:
+    vector<vector<string>> groupAnagrams(vector<string>& strs) {
+        vector<vector<string>>v1;
+        unordered_map<string,vector<string>>m1;
+        for(auto s:strs)
+        {
+            string s1=s;
+            sort(s.begin(),s.end());
+            m1[s].push_back(s1);
+        }
+        for(auto it:m1)
+        {
+            vector<string>v2=it.second;
+            v1.push_back(v2);
+        }
+       return v1; 
+    }
+};
+
+T.C. = O(n∗mlogm)
+S.C. = O(n∗m)
