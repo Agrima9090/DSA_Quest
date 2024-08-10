@@ -1,0 +1,35 @@
+class Solution {
+public:
+    int expandAroundCenter(int left, int right, int n, string s, int &start, int &maxLength) {
+        while (left >= 0 && right < n && s[left] == s[right]) {
+            left--;
+            right++;
+        }
+        int length = right - left - 1;
+        if (length > maxLength) {
+            maxLength = length;
+            start = left + 1;
+        }
+        return maxLength;
+    }
+
+    string longestPalindrome(string s) {
+        if (s.empty()) return "";
+        int n = s.size();
+        int maxLength = 1;  // Initialize with 1 because single character is a palindrome
+        int start = 0;  // Start index of the longest palindrome
+
+        for (int i = 0; i < n; i++) {
+            // Odd length palindrome (center at one character)
+            expandAroundCenter(i, i, n, s, start, maxLength);
+            // Even length palindrome (center between two characters)
+            expandAroundCenter(i, i + 1, n, s, start, maxLength);
+        }
+
+        return s.substr(start, maxLength);
+    }
+};
+
+
+T.C. =O(N^2)
+S.C =O(1)
